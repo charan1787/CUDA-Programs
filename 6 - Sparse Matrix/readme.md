@@ -112,3 +112,5 @@ cuSPARSE provides production-optimised SpMV for these workloads.
 
 !nvcc -O2 -o spmv_csr spmv_csr.cu && ./spmv_csr
 ```
+Date : 02 April 2026
+Email : charanshankar629@gmail.com

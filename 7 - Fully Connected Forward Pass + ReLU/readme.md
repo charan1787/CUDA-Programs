@@ -71,3 +71,5 @@ Output : [64 × 64]
 !nvcc -O2 -o fc_forward fc_forward.cu && ./fc_forward
 ```
 
+Date : 02 April 2026
+Email : charanshankar629@gmail.com
