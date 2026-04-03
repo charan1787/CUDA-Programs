@@ -51,8 +51,6 @@ __global__ void naiveMatMul(float* A, float* B, float* C, int N) {
 
 // tiled matrix
 __global__ void tiledMatMul(float* A, float* B, float* C, int N) {
-
-
     __shared__ float tileA[TILE_SIZE][TILE_SIZE];
     __shared__ float tileB[TILE_SIZE][TILE_SIZE];
 
@@ -60,11 +58,9 @@ __global__ void tiledMatMul(float* A, float* B, float* C, int N) {
     int col = blockIdx.x * TILE_SIZE + threadIdx.x;
 
     float sum = 0.0f;  
-
     int numTiles = (N + TILE_SIZE - 1) / TILE_SIZE;
 
     for (int t = 0; t < numTiles; t++) {
-
 
         if (row < N && (t * TILE_SIZE + threadIdx.x) < N)
             tileA[threadIdx.y][threadIdx.x] = A[row * N + t * TILE_SIZE + threadIdx.x];
@@ -81,7 +77,6 @@ __global__ void tiledMatMul(float* A, float* B, float* C, int N) {
         for (int k = 0; k < TILE_SIZE; k++) {
             sum += tileA[threadIdx.y][k] * tileB[k][threadIdx.x];
         }
-
         __syncthreads();
     }
     if (row < N && col < N) {

@@ -78,8 +78,11 @@ V5 Coarsened:        0.2441 ms  (12.10x) — 8 elements (bandwidth saturated)
 ### Parallel Patterns
 - Five-step kernel optimisation methodology (check reduciton cuda codes)
 
----
-
+- Step 1 — V1 baseline
+- Step 2 — V2 fix divergence
+- Step 3 — V3 better load
+- Step 4 — V4 minimise global memory
+- Step 5 — V5 thread coarsening
 
 ---
 
