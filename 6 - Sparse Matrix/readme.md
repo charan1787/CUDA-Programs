@@ -45,6 +45,7 @@ Three arrays :
 - rowPtr[]  — where each row starts in values[]
 
 Good for : GPU SpMV — one thread per row, parallel across all rows
+
 Bad for : irregular row lengths cause load imbalance
 
 ### ELL — ELLPACK Format
@@ -62,23 +63,31 @@ Bad for : irregular sparsity — one long row wastes memory for all rows
 Our sparse matrix A (4x4) :
 
 1 0 0 2
+
 0 3 0 0
+
 0 0 4 0
+
 0 0 0 5
 
 5 non-zeros out of 16 elements — 69% zeros.
 
-CSR representation :
+### CSR representation :
 
 values = [1, 2, 3, 4, 5]
+
 colIdx = [0, 3, 1, 2, 3]
+
 rowPtr = [0, 2, 3, 4, 5]
 
-How to read rowPtr :
+### How to read rowPtr :
 
 Row 0: rowPtr[0]=0 to rowPtr[1]=2 -> values[0,1] = {1,2} at cols {0,3}
+
 Row 1: rowPtr[1]=2 to rowPtr[2]=3 -> values[2]   = {3}   at col  {1}
+
 Row 2: rowPtr[2]=3 to rowPtr[3]=4 -> values[3]   = {4}   at col  {2}
+
 Row 3: rowPtr[3]=4 to rowPtr[4]=5 -> values[4]   = {5}   at col  {3}
 
 ## Where SpMV is used in deep learning
