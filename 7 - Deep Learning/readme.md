@@ -1,6 +1,6 @@
-# Fully Connected Layer Forward Pass + ReLU
+# CUDA GPU : Fully Connected Layer Forward Pass + ReLU
 
-Implements a fully connected (FC) layer forward pass followed by
+Implemented a fully connected (FC) layer forward pass followed by
 ReLU activation entirely in CUDA.
 
 Computes :
