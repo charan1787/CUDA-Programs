@@ -15,11 +15,12 @@ into a matrix then applying GEMM (same as FC layer from Program 2).
 
 Convolution -> im2col -> matrix multiply -> same as tiled matmul
 
-## # How to compile and run
+## How to compile and run
 ```bash
 nvcc -O2 -o conv2d conv2d.cu && ./conv2d
 ```
 
 ---
 Date : 03 April 2026
+
 Email : charanshankar629@gmail.com

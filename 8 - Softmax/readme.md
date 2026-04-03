@@ -83,6 +83,7 @@ Google Colab:
 !nvcc -O2 -o softmax softmax.cu && ./softmax
 ```
 Date : 03 April 2026
+
 Email : charanshankar629@gmail.com
 
 
