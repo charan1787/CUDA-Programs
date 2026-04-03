@@ -10,7 +10,7 @@ print(result)
 ```
 
 Under the hood custom CUDA kernel runs. Not inbuilt torch.sum(). 
------------------------------
+
 PyTorch provides a mechanism called torch.utils.cpp_extension that lets you compile C++ and CUDA code at runtime and import it as a Python module.
 
 ## File Explanation : 
