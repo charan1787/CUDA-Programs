@@ -3,9 +3,11 @@
 A Python-callable GPU function that computes the sum of a PyTorch tensor using your optimised reduction kernel.
 
 ### Use Case
+```python
 x = torch.ones(1 << 24, device='cuda')
 result = my_reduction.forward(x)
 print(result)
+```
 
 Under the hood custom CUDA kernel runs. Not inbuilt torch.sum(). 
 -----------------------------
