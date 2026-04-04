@@ -1,9 +1,9 @@
 # Fused Softmax CUDA Code 
 
-Kernel 1: find max value       		→ write result to global memory
-Kernel 2: subtract max + exp   	    → write result to global memory
-Kernel 3: find sum             		→ write result to global memory
-Kernel 4: divide by sum        		→ write result to global memory
+Kernel 1: find max value       		→ write result to global memory <br/>
+Kernel 2: subtract max + exp   	    → write result to global memory<br/>
+Kernel 3: find sum             		→ write result to global memory<br/>
+Kernel 4: divide by sum        		→ write result to global memory<br/>
 
 This is called memory-bound overhead. The kernels themselves are fast. 
 
@@ -32,7 +32,7 @@ Our fused kernel:
   ~3 global memory accesses
   Minimum possible memory traffic
 ```
-## OutPut Resuklts : 
+## OutPut Results : 
 
 ```bash
 Unfused softmax: 1.5045 ms
