@@ -1,11 +1,10 @@
 
-// Softmax Forward Pass
-// Steps:
-//   1. Find max value    — max reduction (prevents overflow)
-//   2. Subtract max      — numerical stability
-//   3. Exponentiate      — element-wise exp
-//   4. Sum all values    — sum reduction
-//   5. Divide by sum     — produces probabilities summing to 1.0
+// Softmax Steps :
+//   1. Find max value    
+//   2. Subtract max     
+//   3. Exponentiate      
+//   4. Sum all values   
+//   5. Divide by sum     
  
 
 #include <stdio.h>
