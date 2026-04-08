@@ -10,12 +10,12 @@ Prevents each token from attending to future tokens.
 Sets upper triangle of [N x N] attention matrix to -infinity.
 After softmax it will get zero attention to future tokens.
 
-Attention matrix (4 tokens):
-tok0  tok1  tok2  tok3
-tok0 [ *    -INF    -INF    -INF  ]  attends to 1 token
-tok1 [ *     *      -INF    -INF  ]  attends to 2 tokens
-tok2 [ *     *       *      -INF  ]  attends to 3 tokens
-tok3 [ *     *       *         *  ]  attends to all 4
+Attention matrix (4 tokens):<br/>
+tok0  tok1  tok2  tok3<br/>
+tok0 [ *    -INF    -INF    -INF  ]  attends to 1 token<br/>
+tok1 [ *     *      -INF    -INF  ]  attends to 2 tokens<br/>
+tok2 [ *     *       *      -INF  ]  attends to 3 tokens<br/>
+tok3 [ *     *       *         *  ]  attends to all 4<br/>
 
 ## Why GPT needs causal masking ?
 GPT generates text left to right one token at a time.
