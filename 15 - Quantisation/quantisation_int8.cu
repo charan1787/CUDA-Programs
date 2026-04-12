@@ -100,14 +100,14 @@ int main() {
     int in_features  = 256;  // number of input features
     int N = out_channels * in_features;
 
-    printf("=== INT8 Per-Channel Quantisation ===\n\n");
+    printf("INT8 Per-Channel Quantisation \n\n");
     printf("Weight matrix: %d channels x %d features\n",
            out_channels, in_features);
     printf("FP32 size: %.2f KB\n", N * 4.0f / 1024);
     printf("INT8 size: %.2f KB (4x compression)\n\n", N * 1.0f / 1024);
 
     // Host memory
-    float*   h_input  = (float*)malloc(N * sizeof(float));
+    float*   h_input  = (float*)malloc(N * sizeof(float)); 
     int8_t*  h_int8   = (int8_t*)malloc(N * sizeof(int8_t));
     float*   h_dequant= (float*)malloc(N * sizeof(float));
     float*   h_scales = (float*)malloc(out_channels * sizeof(float));
@@ -133,27 +133,33 @@ int main() {
     cudaMemcpy(d_input, h_input, N * sizeof(float),
                cudaMemcpyHostToDevice);
 
-    cudaEvent_t start, stop;
-    cudaEventCreate(&start);
+    cudaEvent_t start, stop; // just like loading a library
+    cudaEventCreate(&start); // variable creation
     cudaEventCreate(&stop);
 
     // Quantise phase
     // One block per channel, THREADS threads per block
-    cudaEventRecord(start);
+    cudaEventRecord(start); // variable using
+    
     quantiseINT8<<<out_channels, THREADS>>>(
         d_input, d_int8, d_scales, out_channels, in_features);
+
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
+
     float quantMs = 0;
     cudaEventElapsedTime(&quantMs, start, stop);
     printf("Quantisation time:   %.4f ms\n", quantMs);
-
+// --------------------------------------------------------------
     // Dequantise 
     cudaEventRecord(start);
+
     dequantiseINT8<<<out_channels, THREADS>>>(
         d_int8, d_dequant, d_scales, out_channels, in_features);
+
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
+
     float dequantMs = 0;
     cudaEventElapsedTime(&dequantMs, start, stop);
     printf("Dequantisation time: %.4f ms\n\n", dequantMs);
@@ -247,6 +253,8 @@ int main() {
     printf("  INT8 loading: %.4f ms average\n", totalINT8 / runs);
     printf("  Speedup:      %.2fx\n", totalFP32 / totalINT8);
     printf("  (INT8 moves 4x less data — directly faster)\n");
+    // as the matrix is 64 * 256, it will use just registers and cache, 
+    // so speed change is not much compared to DRAM and cache movement
 
     // delete memory space
     cudaFree(d_input); cudaFree(d_int8);
