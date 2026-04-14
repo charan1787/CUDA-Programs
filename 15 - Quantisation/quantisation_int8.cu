@@ -40,7 +40,7 @@ __global__ void quantiseINT8(float* input, int8_t* output,
     for (int i = tid; i < in_features; i += blockDim.x) {
         local_max = fmaxf(local_max,
                           fabsf(input[channel * in_features + i]));
-    }
+    } // for loop helps in less threads, more input features case.
     sdata[tid] = local_max;
     __syncthreads();
 
