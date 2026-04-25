@@ -23,7 +23,7 @@ wrapper.cpp          — the bridge between Python and CUDA
                        pybind11 exposes forward() to Python
                        one line per function you want to expose
 
-setup.py             — tells PyTorch how to compile everything
+compile.py             — tells PyTorch how to compile everything
                        lists source files, sets extension name
 
 ## OutPut : 
