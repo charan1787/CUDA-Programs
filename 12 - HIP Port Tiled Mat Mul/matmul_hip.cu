@@ -68,13 +68,13 @@ int main() {
     int N = 512;
     size_t size = N * N * sizeof(float);
 
-    printf("=== Tiled MatMul — HIP Port ===\n\n");
+    printf("Tiled MatMul — HIP Port \n\n");
     printf("Demonstrating CUDA to HIP translation:\n");
-    printf("  cudaMalloc    → hipMalloc\n");
-    printf("  cudaMemcpy    → hipMemcpy\n");
-    printf("  cudaFree      → hipFree\n");
-    printf("  cudaEvent_t   → hipEvent_t\n");
-    printf("  Kernel code   → IDENTICAL (zero changes)\n\n");
+    printf("  cudaMalloc    -> hipMalloc\n");
+    printf("  cudaMemcpy    -> hipMemcpy\n");
+    printf("  cudaFree      -> hipFree\n");
+    printf("  cudaEvent_t   -> hipEvent_t\n");
+    printf("  Kernel code   -> IDENTICAL (zero changes)\n\n");
 
     // Host memory
     float *h_A = (float*)malloc(size);
