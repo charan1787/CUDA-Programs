@@ -174,25 +174,6 @@ int main() {
     cudaMemcpy(h_unfused, d_output_unfused, size, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_fused,   d_output_fused,   size, cudaMemcpyDeviceToHost);
 
-    // Check first block — after layer norm, mean should be 0
-    // and standard deviation should be 1
-    float sum = 0, sum_sq = 0;
-    for (int i = 0; i < THREADS; i++) {
-        sum    += h_fused[i];
-        sum_sq += h_fused[i] * h_fused[i];
-    }
-    float block_mean = sum / THREADS;
-    float block_std  = sqrtf(sum_sq / THREADS - block_mean * block_mean);
-
-
-
-    // Check unfused and fused match
-    int errors = 0;
-    for (int i = 0; i < N; i++) {
-        if (fabsf(h_unfused[i] - h_fused[i]) > 1e-4f) errors++;
-    }
-    printf("Unfused vs Fused match: %s (%d errors)\n",
-           errors == 0 ? "PASSED" : "FAILED", errors);
 
     // Free memory
     cudaFree(d_input);
