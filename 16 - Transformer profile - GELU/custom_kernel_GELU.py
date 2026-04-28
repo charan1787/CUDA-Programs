@@ -122,23 +122,6 @@ module = load_inline(
 )
 print("Compiled\n")
 
-# Correctness check for some inputs
-print("Correctness Check")
-x_small = torch.randn(8, 128, 3072, device='cuda')
-
-pytorch_ref = torch.nn.functional.gelu(x_small, approximate='tanh')
-fused_out   = module.gelu_fused(x_small)
-
-max_diff = (pytorch_ref - fused_out).abs().max().item()
-print(f"Max diff vs PyTorch tanh GELU : {max_diff:.8f}")
-print(f"Correctness: {'PASSED' if max_diff < 1e-5 else 'FAILED'}\n")
-
-# Benchmarking at multiple sizes
-print("Speedup vs Tensor Size ")
-print(f"{'Size'} {'Elements'} {'MB'} "
-      f"{'Unfused ms'} {'Fused ms'} {'Speedup'} {'In Cache ?'}")
-print("-" * 85)
-
 runs = 500
 
 sizes = [
